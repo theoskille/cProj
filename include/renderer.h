@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "window.h"
 
+
 typedef struct{
 	SDL_Renderer* sdlRenderer;
 }Renderer;

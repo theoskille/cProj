@@ -1,0 +1,11 @@
+#ifndef CONGIG_H
+#define CONFIG_H
+
+#define TILE_SIZE 32
+#define GRID_WIDTH 50
+#define GRID_HEIGHT 50
+
+#define WINDOW_WIDTH (GRID_WIDTH * TILE_SIZE)
+#define WINDOW_HEIGHT (GRID_HEIGHT * TILE_SIZE)
+
+#endif

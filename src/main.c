@@ -1,11 +1,9 @@
 #include <SDL2/SDL.h>
 #include "window.h"
 #include "renderer.h"
-#include "input.h"
 #include "game.h"
+#include "input.h"
 
-#define WINDOW_WIDTH (GRID_WIDTH * TILE_SIZE)
-#define WINDOW_HEIGHT (GRID_HEIGHT * TILE_SIZE)
 
 int main(int argc, char* args[]) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -13,7 +11,7 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
-    Window* window = createWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
+    Window* window = createWindow();
     if (!window) {
         SDL_Quit();
         return 1;
@@ -40,7 +38,7 @@ int main(int argc, char* args[]) {
     while (!inputState.quit) {
         processInput(&inputState, gameState);
         updateGame(gameState);
-        renderGame(renderer, gameState);
+        renderGame(renderer, gameState);  
         SDL_Delay(16);  // Cap to roughly 60 FPS
     }
 

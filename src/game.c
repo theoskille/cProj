@@ -1,5 +1,5 @@
-#include "game.h"
 #include <stdlib.h>
+#include "game.h"
 
 GameState* initGameState() {
     GameState* gameState = malloc(sizeof(GameState));
@@ -8,17 +8,23 @@ GameState* initGameState() {
         return NULL;
     }
 
+    //intialize ship
+    gameState->ship = basic;
+
+    //initialize player
     gameState->player.position.x = GRID_WIDTH / 2;
     gameState->player.position.y = GRID_HEIGHT / 2;
     gameState->player.color = (SDL_Color){255, 0, 0, 255};  // Red
 
     // Initialize grid (0 for empty, 1 for wall)
+    gameState->grid = (TileType**)malloc(GRID_HEIGHT * sizeof(TileType*));
     for (int y = 0; y < GRID_HEIGHT; y++) {
+        gameState->grid[y] = (TileType*)malloc(GRID_WIDTH * sizeof(TileType));
         for (int x = 0; x < GRID_WIDTH; x++) {
             if (x == 0 || y == 0 || x == GRID_WIDTH - 1 || y == GRID_HEIGHT - 1) {
-                gameState->grid[y][x] = 1;  // Wall around the edge
+                gameState->grid[y][x] = WALL;  // Wall around the edge
             } else {
-                gameState->grid[y][x] = 0;  // Empty space
+                gameState->grid[y][x] = EMPTY;  // Empty space
             }
         }
     }
@@ -78,5 +84,8 @@ void movePlayer(GameState* gameState, int dx, int dy) {
 }
 
 void destroyGameState(GameState* gameState) {
+    for (int y = 0; y < GRID_HEIGHT; y++) {
+        free(gameState->grid[y]);
+    }
     free(gameState);
 }

@@ -1,6 +1,5 @@
-#include "renderer.h"
-#include <SDL2/SDL.h>
 #include <stdlib.h>
+#include "renderer.h"
 
 Renderer* createRenderer(Window* window){
 	Renderer* renderer=(Renderer*)malloc(sizeof(renderer));

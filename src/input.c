@@ -1,5 +1,5 @@
-#include "input.h"
 #include <string.h>
+#include "input.h"
 
 void initInputState(InputState* inputState) {
     memset(inputState, 0, sizeof(InputState));

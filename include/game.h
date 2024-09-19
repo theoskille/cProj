@@ -3,10 +3,18 @@
 
 #include <SDL2/SDL.h>
 #include "renderer.h"
+#include "config.h"
 
-#define TILE_SIZE 32
-#define GRID_WIDTH 25
-#define GRID_HEIGHT 19
+//enum for tile types
+typedef enum {
+    EMPTY,
+    WALL,
+    DOOR
+} TileType;
+
+typedef enum{
+    basic
+}ShipType;
 
 typedef struct {
     int x;
@@ -20,8 +28,8 @@ typedef struct {
 
 typedef struct {
     Player player;
-    int grid[GRID_HEIGHT][GRID_WIDTH];
-    // Add more game state variables as needed
+    TileType** grid;
+    ShipType ship;
 } GameState;
 
 GameState* initGameState();
